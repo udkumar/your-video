@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150414174647) do
+ActiveRecord::Schema.define(version: 20150414183750) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -30,5 +30,18 @@ ActiveRecord::Schema.define(version: 20150414174647) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "videos", force: :cascade do |t|
+    t.string   "link",         limit: 255
+    t.string   "title",        limit: 255
+    t.datetime "published_at"
+    t.integer  "likes",        limit: 4
+    t.integer  "dislikes",     limit: 4
+    t.string   "uid",          limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "videos", ["uid"], name: "index_videos_on_uid", using: :btree
 
 end
